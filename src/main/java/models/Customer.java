@@ -1,8 +1,5 @@
 package models;
 
-import lombok.Data;
-
-@Data
 public class Customer {
   String name;
   int age;

@@ -1,8 +1,5 @@
 package models;
 
-import lombok.Data;
-
-@Data
 public class Bar {
   int requiredAge;
   String country;

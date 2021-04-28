@@ -4,6 +4,7 @@ import models.Bar;
 import models.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class DrinkingTest {
@@ -34,7 +35,7 @@ public class DrinkingTest {
     assertTrue(this.hussarBar.serveCustomer(josh));
   }
 
-  @Test
+  @RepeatedTest(10)
   @DisplayName("lmao Amy can drink anywhere")
   public void holymollyAmyIsAnAlcoholic() {
     assertTrue(this.hussarBar.serveCustomer(amy));
