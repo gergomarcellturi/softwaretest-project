@@ -1,0 +1,49 @@
+variables:
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+
+image: maven:3.3.9-jdk-8
+
+stages:
+  - build
+  - test
+  - staging
+  - deploy
+
+cache:
+  paths:
+    - .m2/repository
+
+
+build:
+  stage: build
+  script:
+    - 'mvn $MAVEN_CLI_OPTS clean install -DskipTests -Dfmt.skip=true'
+
+code-formatting-check:
+  stage: test
+  script:
+    - 'mvn $MAVEN_CLI_OPTS fmt:check'
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+run-junit-tests:
+  stage: test
+  script:
+    - 'mvn $MAVEN_CLI_OPTS clean test -Dfmt.skip=true'
+  artifacts:
+    when: always
+    reports:
+      junit: target/surefire-reports/TEST-*.xml
+
+deploy-to-test:
+  stage: staging
+  script:
+    - 'echo deploy to the test environment'
+
+deploy-to-prod:
+  stage: deploy
+  when: manual
+  script:
+    - 'echo deploy to the prod environment'
