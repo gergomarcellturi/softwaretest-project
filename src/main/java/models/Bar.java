@@ -12,7 +12,7 @@ public class Bar {
   public boolean serveCustomer(Customer customer) {
     if (customer.age < this.requiredAge) {
       System.out.printf(
-          "Hey, %s! You can't drink here! This is a(n) %s bar! Get out of here you little punk!%n",
+          "Hey, %s! You can't drink here :(! This is a(n) %s bar! Get out of here you little punk!%n",
           customer.name, this.country);
       return false;
     } else {
