@@ -24,19 +24,19 @@ public class DrinkingTest {
   }
 
   @Test
-  @DisplayName("Underage drinking of Josh in 'murica")
+  @DisplayName("Underage drinking of Josh in 'murica should not be possible")
   public void ohNoJoshIsNotOldEnoughToDrinkInMurica() {
     assertFalse(this.baldEagleShotgunBar.serveCustomer(josh));
   }
 
   @Test
-  @DisplayName("drinking of Josh in hungry")
+  @DisplayName("drinking of Josh in hungary should be possible")
   public void ohYeahJoshCanDrinkInHungary() {
     assertTrue(this.hussarBar.serveCustomer(josh));
   }
 
   @RepeatedTest(10)
-  @DisplayName("lmao Amy can drink anywhere")
+  @DisplayName("drinking of Amy should be possible anywhere")
   public void holymollyAmyIsAnAlcoholic() {
     assertTrue(this.hussarBar.serveCustomer(amy));
     assertTrue(this.baldEagleShotgunBar.serveCustomer(amy));
