@@ -32,7 +32,7 @@ public class DrinkingTest {
   @Test
   @DisplayName("drinking of Josh in hungary should be possible")
   public void ohYeahJoshCanDrinkInHungary() {
-    assertTrue(this.hussarBar.serveCustomer(josh));
+    assertFalse(this.hussarBar.serveCustomer(josh));
   }
 
   @RepeatedTest(10)
